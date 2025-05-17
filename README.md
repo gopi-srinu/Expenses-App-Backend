@@ -19,3 +19,12 @@ This is the backend of the **Expenses App**, built with **Node.js**, **Express**
 ```bash
 git clone https://github.com/your-username/expenses-app-backend.git
 cd expenses-app-backend
+```
+### 2. Install the dependencies
+```bash
+npm install
+```
+### 3. Run the Code
+```bash
+node index.js
+```
