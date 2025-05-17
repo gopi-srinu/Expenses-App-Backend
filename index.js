@@ -23,10 +23,6 @@ connection.connect((err) => {
     }
 });
 
-app.get('/', (req, res) => {
-    res.send("Hii");
-});
-
 app.get('/get-expense', (req, result) => {
     const query = 'SELECT * FROM "Expenses_Table"';
     connection.query(query, (err, res) => {
@@ -45,7 +41,6 @@ app.post('/add-expense', (req, res) => {
         expense_Name VARCHAR(255),
         expense_Amount NUMERIC,
         expense_Date DATE,
-        expense_Invoice VARCHAR(255),
         expense_Category VARCHAR(255)
     )
 `;
@@ -56,10 +51,10 @@ app.post('/add-expense', (req, res) => {
         }
 
         console.log("Table Created Successfully.");
-        const { expense_Name, expense_Amount, expense_Date, expense_Invoice, expense_Category } = req.body;
+        const { expense_Name, expense_Amount, expense_Date, expense_Category } = req.body;
 
-        const sql = 'INSERT INTO "Expenses_Table" (expense_name, expense_amount, expense_date, expense_invoice, expense_category) VALUES ($1, $2, $3, $4, $5)';
-        const values = [expense_Name, expense_Amount, expense_Date, expense_Invoice, expense_Category];
+        const sql = 'INSERT INTO "Expenses_Table" (expense_name, expense_amount, expense_date, expense_category) VALUES ($1, $2, $3, $4, $5)';
+        const values = [expense_Name, expense_Amount, expense_Date, expense_Category];
 
         connection.query(sql, values, (insertErr, insertResult) => {
             if (insertErr) {
